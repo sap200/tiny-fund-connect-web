@@ -1,9 +1,9 @@
 <template>
-  <div class="modal-overlay" @click="$emit('close-modal')">
+  <div class="modal-overlay">
     <div class="modal">
         <p id="heading-create"> <b> Members List </b> </p><br>
         
-        <div class="members-list">
+        <div class="members-list" v-if="membersList != null && membersList.length != 0">
             <ul v-for="(member,index) in membersList" :key="index">
                 <li class="members-name-list">
                     <p><span id="member-name">{{getTagSymbol(member.email, member.hasJoined)}}&nbsp;&nbsp;{{member.email}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<span id="member-balance"> <b>₹ {{getBalanceOfMember(index)}} </b></span> </p>
@@ -15,7 +15,6 @@
     <div class="close" @click="$emit('close-modal')">
       <img class="close-img" src="../../assets/cancel_btn.png" alt="" />
     </div>
-    <Notifications position="top right"/>
   </div>
 </template>
 
@@ -81,72 +80,6 @@ export default {
     margin-top: 15px;
     color: red;
     font-style: cursive;
-}
-.rm-shad {
-  border: none;
-  border-bottom: 1px solid #333; /* Adjust the color and thickness as desired */
-  padding: 5px; /* Adjust padding as needed */
-  outline: none; /* Remove the default focus outline */
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-
-.submit-btn {
-    background-image: linear-gradient(to right, pink, skyblue, pink);
-    width: 90px;
-    height: 30px;
-    border-radius: 10px;
-      outline: none;
-      border: none;
-      cursor: pointer;
-
-}
-.submit-btn:enabled:hover {
-     background-image: linear-gradient(to right, skyblue, pink, skyblue);
-       box-shadow: 0px 0px 5px 2px skyblue;
-}
-
-.submit-btn:disabled {
-    background-image: linear-gradient(to right, grey,white,grey);
-}
-
-.sub-btn {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-}
-
-.p-shad {
-    width: 60%;
-}
-
-.l-shad {
-    width: 50%;
-}
-
-#sbtn-div {
-    text-align: right;
-    margin-top: 25px;
-    margin-right: 25px;
-}
-
-.l-inp {
-    margin-right: 30px;
-}
-
-
-.l-name {
-    margin-right: 5px;
-}
-
-.add-btn {
-    margin-left: 310px;
-    width: 25px;
-    height: 25px;
-    cursor: pointer;
-}
-
-.add-btn:hover {
-    box-shadow: inset 0 0 10px green, inset 0 0 10px green; /* Add the box shadow */
 }
 
 #members-list {

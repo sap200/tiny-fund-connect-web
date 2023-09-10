@@ -78,7 +78,7 @@
         </div>
 
         <Notifications position="top right"/>
-        <members-list-modal v-show="showModal" @close-modal="showModal = false"/>
+        <!-- <members-list-modal v-show="showModal" @close-modal="showModal = false"/> -->
         <poll-modal v-show="showPollModal" @close-modal="showPollModal = false"/>
         <poll-create-modal v-show="showPollCreateModal" @close-modal="tryClosingPollCreation"/>
         <add-member-modal v-show="showAddMemberModal" @close-modal="tryClosingAddMemberModal"/>
@@ -91,7 +91,7 @@
 <script>
 import Menu from '../dashboard/Menu.vue'
 import {HOST} from '../../../secret.js'
-import MembersListModal from './MembersListModal.vue'
+// import MembersListModal from './MembersListModal.vue'
 import PollModal from './PollModal.vue'
 import PollCreateModal from './PollCreateModal.vue'
 import AddMemberModal from './AddMemberModal.vue'
@@ -102,12 +102,12 @@ export default {
     name: "PoolDescription",
     components: {
         Menu,
-        MembersListModal,
-        PollModal,
+        // MembersListModal,
+       PollModal,
         PollCreateModal,
-        AddMemberModal,
+       AddMemberModal,
         TopupModal,
-        PoolDepositModal,
+     PoolDepositModal,
 
     },
     data() {
