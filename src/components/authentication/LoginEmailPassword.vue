@@ -22,6 +22,7 @@
     <!-- Right pane consisting of an image that fills -->
         <div id="right-pane">
         </div>
+        <Notifications position="bottom left"/>
     </div>
 </template>
 
@@ -46,6 +47,7 @@ export default {
 
     methods: {
         async startLogin() {
+            this.$notify("We are logging you in give us 10 secs...")
             console.log("Login started")
             let myEmail = this.email;
             this.email = "";
