@@ -10,7 +10,7 @@ import PasswordResetMfaView from '../views/authentication/PasswordResetMfaView.v
 import PasswordResetInputPasswordView from '../views/authentication/PasswordResetInputPasswordView.vue'
 import VerifiedRedirectionPageView from '../views/authentication/VerifiedRedirectionPageView.vue'
 // dashboard imports
-import PoolViewPage from '../views/dashboard/PoolViewPage.vue'
+//import PoolViewPage from '../views/dashboard/PoolViewPage.vue'
 import DepositListView from '../views/dashboard/DepositListView.vue'
 import WithdrawlListView from '../views/dashboard/WithdrawlListView.vue'
 //import PoolDescriptionView from '../views/pool/PoolDescriptionView.vue'
@@ -84,7 +84,7 @@ const routes = [
   {
     path: '/pool_view_page',
     name: 'PoolViewPage',
-    component: PoolViewPage
+    component: () => import(/* webpackChunkName: "pool_view_page" */ '../views/dashboard/PoolViewPage.vue')
   },
   {
     path: '/deposit_list_view',
