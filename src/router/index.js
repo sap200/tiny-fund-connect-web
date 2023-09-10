@@ -13,11 +13,11 @@ import VerifiedRedirectionPageView from '../views/authentication/VerifiedRedirec
 import PoolViewPage from '../views/dashboard/PoolViewPage.vue'
 import DepositListView from '../views/dashboard/DepositListView.vue'
 import WithdrawlListView from '../views/dashboard/WithdrawlListView.vue'
-import PoolDescriptionView from '../views/pool/PoolDescriptionView.vue'
+//import PoolDescriptionView from '../views/pool/PoolDescriptionView.vue'
 import PaymentSuccessPageView from '../views/pool/PaymentSuccessPageView.vue'
 
 // trading
-import TradingTerminalView from '../views/trade/TradingTerminalView.vue'
+//import TradingTerminalView from '../views/trade/TradingTerminalView.vue'
 
 
 const routes = [
@@ -101,7 +101,7 @@ const routes = [
   {
     path: '/pool_description_view',
     name: 'PoolDescriptionView',
-    component: PoolDescriptionView
+    component: () => import(/* webpackChunkName: "pool_description_view" */ '../views/pool/PoolDescriptionView.vue')
   },
 
   {
@@ -115,7 +115,7 @@ const routes = [
   {
     path: '/trading_terminal_view',
     name: 'TradingTerminalView',
-    component: TradingTerminalView
+    component: () => import(/* webpackChunkName: "trading_terminal_view" */ '../views/trade/TradingTerminalView.vue')
   },
 
 ]
