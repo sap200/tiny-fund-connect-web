@@ -54,7 +54,7 @@ export default {
     methods: {
 
         goToSignup() {
-            this.$router.push("/sign_up_enter_email_view")
+            this.$router.push("/")
         },
 
         async doWhileCreated() {
