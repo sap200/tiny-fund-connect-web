@@ -67,7 +67,6 @@ export default {
             if(!res) {
                 localStorage.clear()
                 this.$router.replace("/login_email_password_view")
-                window.history.replaceState({}, '', '/login_email_password_view');
             }
             await this.getAllDepositsByEmailId()
         },

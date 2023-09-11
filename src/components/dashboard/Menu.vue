@@ -67,8 +67,6 @@ export default {
             console.log("Logout success")
             localStorage.clear()
             this.$router.replace("/login_email_password_view")
-            window.history.replaceState({}, '', '/login_email_password_view');
-
           }
 
           // Handle the response data here

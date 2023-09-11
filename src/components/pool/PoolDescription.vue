@@ -4,10 +4,11 @@
 
         <div id="heading-container"> <b> Pool Description Page </b> </div>
         <div id="buttons-container"> 
+            <Button class="deposit-button" @click="goBack"> 🔙 Back </Button>
             <Button class="deposit-button" @click="redirectToTrade"> <b>💹 Trade </b></Button>
             <Button class="deposit-button" @click="onPoolDepositModalShow"> <b>Pool Deposits </b></Button>
             <Button class="deposit-button" @click="showTopupModal=true"> <b>Top Up</b> ⬆️ </Button>
-            <Button class="deposit-button" @click="showModal=true"> <b>👥 Members </b></Button>
+            <Button class="deposit-button" @click="displayMembersPage"> <b>👥 Members </b></Button>
             <Button class="deposit-button" @click="showAddMemberModal=true"> <b>➕ Add </b></Button>
             <label id="balance-tab"> <b> <span id="money-bag">💰</span> ₹ {{poolBalance}}</b> </label>
             <label class="pool-id"> <b>{{getPoolIdFromStorage}}</b> </label>
@@ -144,6 +145,15 @@ export default {
 
     methods: {
 
+
+        goBack() {
+            this.$router.replace("/pool_view_page")
+        },
+
+        displayMembersPage() {
+             window.open('#/member_list_modal_view', '_blank');
+        },
+
         redirectToTrade() {
             this.$router.push("/trading_terminal_view")
         },
@@ -216,7 +226,6 @@ export default {
             if(!res) {
                 localStorage.clear()
                 this.$router.replace("/login_email_password_view")
-                window.history.replaceState({}, '', '/login_email_password_view');
             }
 
             await this.getUpdatedPool()

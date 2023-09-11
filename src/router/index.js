@@ -19,6 +19,8 @@ import PaymentSuccessPageView from '../views/pool/PaymentSuccessPageView.vue'
 // trading
 //import TradingTerminalView from '../views/trade/TradingTerminalView.vue'
 
+import MembersListModalView from '../views/pool/MembersListModalView.vue'
+
 
 const routes = [
   {
@@ -109,6 +111,13 @@ const routes = [
     name: 'PaymentSuccessPageView',
     component: PaymentSuccessPageView
   },
+
+  {
+    path: '/member_list_modal_view',
+    name: 'MembersListModalView',
+    component: MembersListModalView
+  },
+
 
   // trading
   

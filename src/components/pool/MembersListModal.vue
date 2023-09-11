@@ -1,26 +1,38 @@
 <template>
-  <div class="modal-overlay">
-    <div class="modal">
-        <p id="heading-create"> <b> Members List </b> </p><br>
-        
-        <div class="members-list" v-if="membersList != null && membersList.length != 0">
-            <ul v-for="(member,index) in membersList" :key="index">
-                <li class="members-name-list">
-                    <p><span id="member-name">{{getTagSymbol(member.email, member.hasJoined)}}&nbsp;&nbsp;{{member.email}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<span id="member-balance"> <b>₹ {{getBalanceOfMember(index)}} </b></span> </p>
-               </li>
-               
-            </ul>
+    <div id="parent-member-container">
+        <div id="heading"> <b>Members List</b> </div>
+
+        <div id="table-view">
+            <table>
+                <thead>
+                    <tr>
+                        <th> SL. No </th>
+                        <th> Role </th>
+                        <th> Email</th>
+                        <th> Balance </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item,index) in membersList" :key="index">
+                        <td> <b>{{index+1}}</b></td>
+                        <td> {{getTagSymbol(item.email, item.hasJoined)}} </td>
+                        <td><b>{{item.email}}</b> </td>
+                        <td><b> {{item.balance}}</b> </td>
+                    </tr>
+                </tbody>
+            </table>
+
         </div>
     </div>
-    <div class="close" @click="$emit('close-modal')">
-      <img class="close-img" src="../../assets/cancel_btn.png" alt="" />
-    </div>
-  </div>
+
 </template>
 
 <script>
 export default {
     name: "MembersListModal",
+    components: {
+    },
+
     data() {
         return {
             membersList: []
@@ -60,107 +72,59 @@ export default {
 
 <style scoped>
 
-#member-balance {
-    color: darkblue;
-    text-align: right;
+#table-view {
+    margin-top: 20px;
+    text-align: center;
 }
 
-.members-name-list {
-    border-bottom: 1px solid black;
-}
-
-.members-list {
-    text-align: left;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-
-}
-
-#error-message {
-    background-color: white;
-    margin-top: 15px;
-    color: red;
-    font-style: cursive;
-}
-
-#members-list {
-    margin-bottom: 10px;
-}
-
-.modal-texts {
-    color: black;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 16px;
-    font-style: bold;
-}
-
-#heading-create {
-    font-size: 25px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    color: black;
-    background-image: linear-gradient(to right, pink, skyblue, pink);
+#parent-member-container {
+    background-image: url('../../assets/bank_img.jpg');
     width: 100%;
+    overflow: auto;
+    height: 100vh;
 }
 
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  background-color: #000000da;
+#heading {
+    background-image:linear-gradient(to right, pink, skyblue, pink);
+    height: 50px;
+    font-family: cursive;
+    display: flex;
+   justify-content: center; /* Horizontally center content */
+   align-items: center; /* Vertically center content */
+   font-size: 24px;
+   color: black;
 }
 
-#create-pool-form {
-    text-align: left;
-}
+ /* Style the table */
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            max-width: 800px;
+            background-color: rgb(255, 255, 255, 0.2);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+              margin: 0 auto; 
+              font-family: cursive;
+        }
 
-.modal {
-  text-align: center;
-  background-color: white;
-  height: 70%;
-  width: 650px;
-  margin-top: 10%;
-  padding: 20px;
-  border-radius: 5px;
-  overflow: auto;
-  background-image:url("../../assets/bank_img.jpg");
-  background-attachment: fixed;
-  background-size: fill;
-  overflow: auto;
-}
-.close {
-  margin: 10% 0 0 16px;
-  cursor: pointer;
-}
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            border: 1px solid black;
+        }
 
-.close-img {
-  width: 25px;
-}
+        th {
+            background-color: #333;
+            color: white;
+        }
 
-.check {
-  width: 150px;
-}
+        tr:hover {
+            background-color: aliceblue;
+            cursor: pointer;
+        }
 
-h6 {
-  font-weight: 500;
-  font-size: 28px;
-  margin: 20px 0;
-}
 
-p {
-  font-size: 16px;
-  margin: 20px 0;
-}
 
-#create-pool {
-  background-color: #ac003e;
-  width: 150px;
-  height: 40px;
-  color: white;
-  font-size: 14px;
-  border-radius: 16px;
-  margin-top: 50px;
-}
+
 </style>

@@ -28,6 +28,7 @@
 
 <script>
 import  {HOST} from '../../../secret.js'
+import checkToken from '../../utils.js';
 
 export default {
     name: 'LoginEmailPassword',
@@ -39,6 +40,11 @@ export default {
         }
     },
 
+
+    created() {
+        this.doWhileCreated()
+    },
+
     computed: {
         isEmailAndPasswordFilled() {
             return this.email == "" || this.password == ""
@@ -46,6 +52,24 @@ export default {
     },
 
     methods: {
+
+        async doWhileCreated() {
+            try {
+                let x = JSON.parse(localStorage.getItem("loginResponse"))
+                x.activeToken;
+                // check token
+                let res =  await checkToken(HOST)
+                console.log("Result here", res)
+                if(res) {
+                    this.$router.replace("/pool_view_page")
+                }
+            } catch(error) {
+                console.log("Don not do redirect")
+            }
+
+
+        },
+
         async startLogin() {
             this.$notify("We are logging you in give us 10 secs...")
             console.log("Login started")
