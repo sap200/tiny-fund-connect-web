@@ -8,7 +8,7 @@
                 <p id="verify-text"> <i><b> Enter the otp sent on your mail </b></i> </p><br>
                 <form id="signup-form-1" @submit.prevent>
                     <label id="otp"> <b>MFA Code</b> </label><br>
-                    <input type="string" required v-model="otp"/><br><br>
+                    <input type="text" required v-model="otp"/><br><br>
                     <Button id="signup-button" @click="submitOtp" :disabled="isButtonDisabled"> Verify OTP </Button>
                 </form>
 
