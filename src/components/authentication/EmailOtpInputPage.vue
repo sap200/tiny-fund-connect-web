@@ -45,11 +45,11 @@ export default {
     },
 
     created() {
-        let x = localStorage.getItem("mfaEnrolled")
+        let email = localStorage.getItem("email")
+        let x = localStorage.getItem(email+"_mfaEnrolled")
         if (x == null || x!="done") {
             console.log("went inside");
             this.startMfaEnrollment();
-            localStorage.setItem("mfaEnrolled", "done");
         }
     },
 
@@ -87,6 +87,7 @@ export default {
             }
 
             if(responseData.status == "SUCCESS") {
+                localStorage.setItem(localStorage.getItem("email")+"_mfaEnrolled", "done");
                 console.log("Signup success")
                 this.$router.push("/login_email_password_view")
             }
@@ -125,6 +126,11 @@ export default {
 
                 if(!response.ok) {
                     this.errorMessage = responseData.message;
+                    if(this.errorMessage.includes("InvalidFlowState")) {
+                        localStorage.setItem(localStorage.getItem("email")+"_mfaEnrolled", "done");
+                        this.$router.push("/login_mfa_page_view")
+                        return;
+                    }
                     return;
                 }
 

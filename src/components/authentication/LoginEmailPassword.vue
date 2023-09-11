@@ -120,7 +120,15 @@ export default {
                 localStorage.setItem("email", myEmail);
                 localStorage.setItem("flowId", responseData.flowId);
 
-                this.$router.push("/login_mfa_page_view");
+                // if emailId is verified then go to loginMFA page view
+                const routeDecision = localStorage.getItem(myEmail + "_mfaEnrolled")
+                console.log(routeDecision);
+                if(routeDecision == null || routeDecision != "done") {
+                    this.$router.push("/email_otp_input_page_view")
+                } else {
+                    this.$router.push("/login_mfa_page_view");
+                }
+                // else go to email otp page
 
             } catch(error) {
                 this.errorMessage = error
