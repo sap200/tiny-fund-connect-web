@@ -99,6 +99,7 @@ export default {
         },
 
         async startMfaEnrollment() {
+            console.log("I am inside MFA enrollment")
             let apiPath = HOST + "/enrollmfa/emailotp"
 
                 let payload = {
