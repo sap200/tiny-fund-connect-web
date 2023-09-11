@@ -13,7 +13,7 @@
                     <input type="password" required v-model="password"/><br><br><br>
                     <Button id="verify-button" @click="startLogin" :disabled="isEmailAndPasswordFilled"> Log in </Button>
                 </form>
-                <p id="login-text"><a href="#" @click.prevent="routeToForgotPassword"> Forgot password </a> or <a href="/sign_up_enter_email_view" > Signup </a></p>
+                <p id="login-text"><a href="#" @click.prevent="routeToForgotPassword"> Forgot password </a> or <a href="#" @click.prevent="goToSignup"> Signup </a></p>
                 <p id="error-message"> <i>{{errorMessage}}</i> </p>
 
             </div>
@@ -52,6 +52,10 @@ export default {
     },
 
     methods: {
+
+        goToSignup() {
+            this.$router.push("/sign_up_enter_email_view")
+        },
 
         async doWhileCreated() {
             try {
