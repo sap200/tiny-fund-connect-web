@@ -19,7 +19,7 @@
                     <input type="password" required v-model="passwordb"/><br><br><br>
                     <Button id="verify-button" @click="callSignupStartApi"  :disabled="!areAllInputsGiven"> Register </Button>
                 </form>
-                <p id="login-text"> Already have an account <a href="#/login_email_password_view"> login </a></p>
+                <p id="login-text"> Already have an account <a href="#" @click.prevent="goToLoginPage"> login </a></p>
                 <p id="error-message"> <i>{{errorMessage}}</i> </p>
 
             </div>
@@ -53,6 +53,10 @@ export default {
     },
 
     methods: {
+        goToLoginPage() {
+            this.$router.push("/login_email_password_view")
+        },
+
         async callSignupStartApi() {
             this.errorMessage = ""
             console.log(this.firstName)

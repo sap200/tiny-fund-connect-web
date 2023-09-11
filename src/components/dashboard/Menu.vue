@@ -66,9 +66,8 @@ export default {
           if(responseData.code == "LOGOUT000") {
             console.log("Logout success")
             localStorage.clear()
+            localStorage.setItem("mfaEnrolled", "done");
             this.$router.replace("/login_email_password_view")
-            window.history.replaceState({}, '', '/login_email_password_view');
-
           }
 
           // Handle the response data here

@@ -13,7 +13,7 @@
                     <input type="password" required v-model="password"/><br><br><br>
                     <Button id="verify-button" @click="startLogin" :disabled="isEmailAndPasswordFilled"> Log in </Button>
                 </form>
-                <p id="login-text"><a href="#" @click.prevent="routeToForgotPassword"> Forgot password </a> or <a href="/sign_up_enter_email_view" > Signup </a></p>
+                <p id="login-text"><a href="#" @click.prevent="routeToForgotPassword"> Forgot password </a> or <a href="#" @click.prevent="goToSignup"> Signup </a></p>
                 <p id="error-message"> <i>{{errorMessage}}</i> </p>
 
             </div>
@@ -28,6 +28,7 @@
 
 <script>
 import  {HOST} from '../../../secret.js'
+import checkToken from '../../utils.js';
 
 export default {
     name: 'LoginEmailPassword',
@@ -39,6 +40,11 @@ export default {
         }
     },
 
+
+    created() {
+        this.doWhileCreated()
+    },
+
     computed: {
         isEmailAndPasswordFilled() {
             return this.email == "" || this.password == ""
@@ -46,6 +52,28 @@ export default {
     },
 
     methods: {
+
+        goToSignup() {
+            this.$router.push("/")
+        },
+
+        async doWhileCreated() {
+            try {
+                let x = JSON.parse(localStorage.getItem("loginResponse"))
+                x.activeToken;
+                // check token
+                let res =  await checkToken(HOST)
+                console.log("Result here", res)
+                if(res) {
+                    this.$router.replace("/pool_view_page")
+                }
+            } catch(error) {
+                console.log("Don not do redirect")
+            }
+
+
+        },
+
         async startLogin() {
             this.$notify("We are logging you in give us 10 secs...")
             console.log("Login started")
@@ -92,7 +120,15 @@ export default {
                 localStorage.setItem("email", myEmail);
                 localStorage.setItem("flowId", responseData.flowId);
 
-                this.$router.push("/login_mfa_page_view");
+                // if emailId is verified then go to loginMFA page view
+                const routeDecision = localStorage.getItem(myEmail + "_mfaEnrolled")
+                console.log(routeDecision);
+                if(routeDecision == null || routeDecision != "done") {
+                    this.$router.push("/email_otp_input_page_view")
+                } else {
+                    this.$router.push("/login_mfa_page_view");
+                }
+                // else go to email otp page
 
             } catch(error) {
                 this.errorMessage = error

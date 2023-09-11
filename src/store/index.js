@@ -17,7 +17,11 @@ export default createStore({
       myOwnPollDetails: null,
       isPollApiHit: false,
       isAddMemberApiHit: false,
-
+      currCheckoutToken: "",
+      currPoolId: "",
+      currEmailId: "",
+      currUserToken: "",
+      poolDeposits: null,
 
   },
   mutations: {
