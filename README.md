@@ -3,7 +3,7 @@
 # tiny-fund-connect-web
 
 ## Try it out
-![try it out here](http://172.232.132.251/)
+[try it out here](http://172.232.132.251/)
 
 ## Installation and Running
 - Install npm and node from here https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
